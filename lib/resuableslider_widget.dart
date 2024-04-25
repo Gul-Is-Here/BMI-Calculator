@@ -22,7 +22,7 @@ class _ResuableSilderWidgetState extends State<ResuableSilderWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Height',
               style: TextStyle(fontSize: 18),
             ),
@@ -33,31 +33,31 @@ class _ResuableSilderWidgetState extends State<ResuableSilderWidget> {
               children: [
                 Text(
                   height.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 40,
                   ),
                 ),
-                Text('cm')
+                const Text('cm')
               ],
             ),
             SliderTheme(
               data: SliderTheme.of(context).copyWith(
+                inactiveTrackColor: const Color(0xFF8D8E98),
                 activeTrackColor: Colors.white,
-                thumbColor: Color(0xFFEB1555),
-                overlayColor: Color(0x29EB1555),
-                thumbShape: RoundSliderThumbShape(elevation: 15.0),
-                overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+                thumbColor: const Color(0xFFEB1555),
+                overlayColor: const Color(0x29EB1555),
+                thumbShape: const RoundSliderThumbShape(elevation: 15.0),
+                overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0),
               ),
               child: Slider(
                 value: height.toDouble(),
-                inactiveColor: const Color(0xFF8D8E98),
                 min: 120,
                 max: 220,
                 onChanged: (double newValue) {
                   setState(() {
                     height = newValue.round();
                   });
-                  print(newValue);
+                
                 },
               ),
             )
