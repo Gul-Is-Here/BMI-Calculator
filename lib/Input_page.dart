@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/bottom_container_widget.dart';
+import 'package:bmi_calculator/bottom_button_widget.dart';
 import 'package:bmi_calculator/constant.dart';
 import 'package:bmi_calculator/container_widget.dart';
 import 'package:bmi_calculator/resuableslider_widget.dart';
@@ -16,19 +17,40 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
+  int wight = 60;
+  int age = 19;
+  void increaseWight() {
+    setState(() {
+      wight = wight + 1;
+    });
+  }
+
+  void reduceWight() {
+    setState(() {
+      wight = wight - 1;
+    });
+  }
+
+  void increaseAge() {
+    setState(() {
+      age = age + 1;
+    });
+  }
+
+  void reduceAge() {
+    setState(() {
+      age = age - 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('BMI Calculator'),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.add),
-        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: Row(
@@ -65,29 +87,29 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             const ResuableSilderWidget(),
-            const Expanded(
+            Expanded(
               child: Row(
                 children: [
                   BottomContainerWidget(
-                    color: kActiveCardColor,
+                    number: wight,
+                    text: 'WEIGHT',
+                    onTap2: reduceWight,
+                    rIcon: Icons.remove,
+                    onTap: increaseWight,
+                    pIcon: Icons.add,
                   ),
                   BottomContainerWidget(
-                    color: kActiveCardColor,
+                    number: age,
+                    text: 'AGE',
+                    onTap2: reduceAge,
+                    rIcon: Icons.remove,
+                    onTap: increaseAge,
+                    pIcon: Icons.add,
                   ),
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-                color: kBottomContainerColor,
-              ),
-            )
+            BottomButtonWidget()
           ],
         ));
   }
