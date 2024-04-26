@@ -1,9 +1,10 @@
+import 'package:bmi_calculator/calculator_brain.dart';
 import 'package:bmi_calculator/screens/result_screen.dart';
-import 'package:bmi_calculator/widget/bottom_container_widget.dart';
-import 'package:bmi_calculator/widget/bottom_button_widget.dart';
+import 'package:bmi_calculator/components/bottom_container_widget.dart';
+import 'package:bmi_calculator/components/bottom_button_widget.dart';
 import 'package:bmi_calculator/constants/constant.dart';
-import 'package:bmi_calculator/widget/container_widget.dart';
-import 'package:bmi_calculator/widget/resuableslider_widget.dart';
+import 'package:bmi_calculator/components/container_widget.dart';
+import 'package:bmi_calculator/components/resuableslider_widget.dart';
 import 'package:flutter/material.dart';
 
 enum Gender { male, female }
@@ -18,17 +19,17 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
-  int wight = 60;
+  int weight = 60;
   int age = 19;
-  void increaseWight() {
+  void increaseweight() {
     setState(() {
-      wight = wight + 1;
+      weight = weight + 1;
     });
   }
 
-  void reduceWight() {
+  void reduceweight() {
     setState(() {
-      wight = wight - 1;
+      weight = weight - 1;
     });
   }
 
@@ -94,11 +95,11 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   BottomContainerWidget(
-                    number: wight,
+                    number: weight,
                     text: 'WEIGHT',
-                    onTap2: reduceWight,
+                    onTap2: reduceweight,
                     rIcon: Icons.remove,
-                    onTap: increaseWight,
+                    onTap: increaseweight,
                     pIcon: Icons.add,
                   ),
                   BottomContainerWidget(
@@ -112,33 +113,24 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ResultScreen();
-                    },
-                  ),
-                );
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                height: kBottomContainerHeight,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  ),
-                  color: kBottomContainerColor,
-                ),
-                child: const Text(
-                  'Calculate',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-              ),
-            )
+            BottomButtonWidget(
+                onTap: () {
+                  CalculatorBrain myBrainCalculator =
+                      CalculatorBrain(height: height, weight: weight);
+
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ResultScreen(
+                          bmiResult: myBrainCalculator.calculateBMI(),
+                          resultText: myBrainCalculator.getResult(),
+                          interpretation: myBrainCalculator.getInterpretation(),
+                        );
+                      },
+                    ),
+                  );
+                },
+                title: 'CALCULATE')
           ],
         ));
   }
