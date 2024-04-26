@@ -1,5 +1,6 @@
+import 'package:bmi_calculator/screens/result_screen.dart';
 import 'package:bmi_calculator/widget/bottom_container_widget.dart';
-import 'package:bmi_calculator/screens/bottom_button_widget.dart';
+import 'package:bmi_calculator/widget/bottom_button_widget.dart';
 import 'package:bmi_calculator/constants/constant.dart';
 import 'package:bmi_calculator/widget/container_widget.dart';
 import 'package:bmi_calculator/widget/resuableslider_widget.dart';
@@ -86,7 +87,9 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            const ResuableSilderWidget(),
+            ResuableSilderWidget(
+              fHeight: height,
+            ),
             Expanded(
               child: Row(
                 children: [
@@ -109,7 +112,33 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            BottomButtonWidget()
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ResultScreen();
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                alignment: Alignment.center,
+                width: double.infinity,
+                height: kBottomContainerHeight,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                  ),
+                  color: kBottomContainerColor,
+                ),
+                child: const Text(
+                  'Calculate',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+            )
           ],
         ));
   }

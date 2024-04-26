@@ -38,14 +38,15 @@ class BottomContainerWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                FloatingActionButton(
-                  elevation: 6.0,
-                  mini: true,
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color(0xFF4C4F5E),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
+                RawMaterialButton(
+                  elevation: 0.0,
                   onPressed: onTap2,
+                  constraints: BoxConstraints.tightFor(
+                    width: 56.0,
+                    height: 56.0,
+                  ),
+                  shape: CircleBorder(),
+                  fillColor: Color(0xFF4C4F5E),
                   child: Icon(
                     rIcon,
                     weight: 40.0,
@@ -53,14 +54,15 @@ class BottomContainerWidget extends StatelessWidget {
                     size: 30,
                   ),
                 ),
-                FloatingActionButton(
-                  elevation: 6.0,
-                  mini: true,
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color(0xFF4C4F5E),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
+                RawMaterialButton(
+                  elevation: 0.0,
                   onPressed: onTap,
+                  constraints: BoxConstraints.tightFor(
+                    width: 56.0,
+                    height: 56.0,
+                  ),
+                  shape: CircleBorder(),
+                  fillColor: Color(0xFF4C4F5E),
                   child: Icon(
                     pIcon,
                     weight: 40.0,

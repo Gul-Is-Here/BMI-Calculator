@@ -2,14 +2,15 @@ import 'package:bmi_calculator/constants/constant.dart';
 import 'package:flutter/material.dart';
 
 class ResuableSilderWidget extends StatefulWidget {
-  const ResuableSilderWidget({super.key});
-
+  ResuableSilderWidget({super.key, required this.fHeight});
+  int fHeight;
   @override
   State<ResuableSilderWidget> createState() => _ResuableSilderWidgetState();
 }
 
 class _ResuableSilderWidgetState extends State<ResuableSilderWidget> {
   int height = 180;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -47,7 +48,8 @@ class _ResuableSilderWidgetState extends State<ResuableSilderWidget> {
                 thumbColor: const Color(0xFFEB1555),
                 overlayColor: const Color(0x29EB1555),
                 thumbShape: const RoundSliderThumbShape(elevation: 15.0),
-                overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0),
+                overlayShape:
+                    const RoundSliderOverlayShape(overlayRadius: 30.0),
               ),
               child: Slider(
                 value: height.toDouble(),
@@ -57,7 +59,7 @@ class _ResuableSilderWidgetState extends State<ResuableSilderWidget> {
                   setState(() {
                     height = newValue.round();
                   });
-                
+                   widget.fHeight= height;
                 },
               ),
             )
